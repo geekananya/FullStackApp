@@ -20,10 +20,11 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm -v
-    - run: cd react-app
-    - run: ls
-    - run: npm ci
+
+    - name: Install dependencies
+      working-directory: ./react-app
+      run: npm ci
+    
     - run: npm run build
     - uses: jakejarvis/s3-sync-action@master
       with:
