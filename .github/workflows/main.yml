@@ -3,7 +3,7 @@ name: React Frontend build to S3 bucket
 on:
   push:
     branches:
-      -main
+      - main
 
 jobs:
   build:
