@@ -14,6 +14,8 @@ jobs:
         # node-version: [14.x, 16.x, 18.x]    // 9 jobs run for every combination of configurations
         node-version: [20.x]
 
+    working-directory: ./react-app
+
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}    # name of the step
@@ -22,7 +24,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
-      working-directory: ./react-app
       run: npm ci
     
     - run: npm run build
