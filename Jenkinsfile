@@ -1,12 +1,12 @@
 pipeline {
-    agent any       // any available agent (executor)
+    agent docker { image 'python:3.13.0-alpine' }       // any available agent (executor) -- working on top of python img here
 
     stages {
         stage('Build') {
             steps {
                 dir('DRF') {
                     echo 'Building...'
-                    sh 'python -m venv venv'
+                    sh 'python3 -m venv venv'
                     sh 'source venv/bin/activate'
                     sh 'pip install -r requirements.txt'
                     // sh 'python manage.py migrate'
