@@ -44,9 +44,7 @@ def register(request):
         user.set_password(request.data.get('password'))  # hashes password
         user.is_active = True
         user.save()
-        print(user.password)
         token = Token.objects.create(user=user)
-        print(token)
         return Response({'token': token.key, 'user': serialiser.data})
 
     print(serialiser)
@@ -101,8 +99,6 @@ def get_post(request, pk):
 def add_post(request):
     username = User.objects.get(username = request.user).username
 
-
-
     serializer = PostSerializer(data=request.data, context={'author': username})      #overriding create method->called after save ig
 
     if serializer.is_valid():
@@ -118,7 +114,7 @@ def add_post(request):
 def update_post(request, pk):
     post = Posts.objects.get(id = pk)
     if post.author_username != str(request.user):
-        return Response({"error": 'Unauthorized action'})
+        return Response({"error": 'Unauthorized action'}, status=HTTP_401_UNAUTHORIZED)
     serializer = PostSerializer(instance=post, data=request.data)
     if serializer.is_valid() :
         serializer.save()
