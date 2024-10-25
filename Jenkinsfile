@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'python:3.12.6' }
+    }
     // {
     //     docker { image 'python:3.13.0-alpine' }       // any available agent (executor) -- working on top of python img here
     // }
