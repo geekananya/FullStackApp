@@ -6,10 +6,10 @@ pipeline {
             steps {
                 dir('DRF') {
                     echo 'Building...'
-                    sh 'virtualenv env'
-                    sh 'source env/bin/activate'
+                    sh 'python -m venv venv'
+                    sh 'source venv/bin/activate'
                     sh 'pip install -r requirements.txt'
-                    sh 'python manage.py migrate'
+                    // sh 'python manage.py migrate'
                 }
             }
         }

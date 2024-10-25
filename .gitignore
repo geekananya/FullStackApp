@@ -27,7 +27,6 @@ dist-ssr
 *.sw?
 
 
-
 # Django
 .idea/
 .DS_Store
